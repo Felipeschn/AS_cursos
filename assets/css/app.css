@@ -1,0 +1,22 @@
+.table th+.acao {
+    width: 50px;
+}
+.qtd_prod{
+    width: 60px;
+}
+.px-0{
+    padding-left: 0px;
+    padding-right: 0px;
+}
+.pl-0{
+    padding-left: 0px;
+}
+.pr-0{
+    padding-right: 0px;
+}
+.right{
+    text-align: right;
+}
+#produtos-grid tr td{
+    vertical-align: middle;
+}
