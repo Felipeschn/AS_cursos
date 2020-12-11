@@ -15,7 +15,7 @@
 
         $cliente->inserir();
 
-        header('Location: clientes.php');
+        header('Location: portal.php');
     } catch (Exception $e) {
         Erro::trataErro($e);
     }

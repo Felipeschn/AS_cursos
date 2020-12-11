@@ -23,6 +23,19 @@ class Curso
         return $lista;
     }
 
+    public function cursosDoUsuario($cursosIds)
+    {
+        if (!$cursosIds) {
+            return [];
+        }
+        $cursosIds = implode(', ', $cursosIds);
+        $query = "SELECT codigo, nome FROM cursos WHERE codigo IN ($cursosIds)";
+        $conexao = Conexao::pegarConexao();
+        $resultado = $conexao->query($query);
+        $lista = $resultado->fetchAll();
+        return $lista;
+    }
+
     public function getProduto()
     {
         $obj= array(

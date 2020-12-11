@@ -54,11 +54,11 @@ class Cliente
         $conexao->exec($query);
     }
 
-    private function cadastraCache(int $id, $manager)
+    private function cadastraCache(int $id, $manager, $nomeUsuario)
     {      
         $conexao = Conexao::pegarConexao();  
         $conexao->exec("DELETE FROM tb_cache");
-        $query = "INSERT INTO tb_cache VALUES ('$manager', $id)";
+        $query = "INSERT INTO tb_cache VALUES ('$manager', $id, '$nomeUsuario')";
         $conexao->exec($query);
     }
 
@@ -76,8 +76,6 @@ class Cliente
     public function validaUser(){
         $query = "SELECT * FROM tb_usuarios WHERE username = '$this->username' AND senha = '$this->senha'";
 
-        // print_r ($query);
-
         $conexao = Conexao::pegarConexao();
         $resultado = $conexao->query($query);
         $lista = $resultado->fetchAll();
@@ -87,6 +85,39 @@ class Cliente
             throw new Exception('Usuário ou senha incorreto');
         }
 
-        $this->cadastraCache($lista[0]['idusuario'], $lista[0]['manager']);
+        $this->cadastraCache($lista[0]['idusuario'], $lista[0]['manager'], $lista[0]['nome']);
+    }
+    public static function inclui($cursoId)
+    {
+        $usuarioId = Self::getCache()->userid;
+        $query = "SELECT * FROM tb_usuarios WHERE idusuario = $usuarioId";
+
+        $conexao = Conexao::pegarConexao();
+        $resultado = $conexao->query($query);
+        $lista = $resultado->fetchAll();
+
+        $cursos = json_decode($lista[0]['cursos']);
+        $cursos[] = (int)$cursoId;
+        $cursos = json_encode($cursos);
+
+        $query = "UPDATE tb_usuarios SET cursos = '$cursos' where idusuario = $usuarioId";
+
+        $conexao->exec($query);
+    }
+
+    public static function getCursosUsuarioLogado(){
+        $usuarioId = Self::getCache()->userid;
+        $query = "SELECT * FROM tb_usuarios WHERE idusuario = $usuarioId";
+
+        $conexao = Conexao::pegarConexao();
+        $resultado = $conexao->query($query);
+        $lista = $resultado->fetchAll();
+
+        $cursos = json_decode($lista[0]['cursos']);
+        
+        if (!$cursos) {
+            $cursos = [];
+        }
+        return $cursos;
     }
 }

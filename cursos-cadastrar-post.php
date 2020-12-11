@@ -9,7 +9,7 @@
 
         $curso->inserir();
 
-        header('Location: cursos.php');
+        header('Location: portal.php');
     } catch (Exception $e) {
         Erro::trataErro($e);
     }

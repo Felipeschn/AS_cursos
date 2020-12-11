@@ -3,12 +3,9 @@
     try {
         $curso = new Curso();
         $lista = $curso->listar();
-
-        // print_r(Cliente::getCache());
     } catch(Exception $e) {
         Erro::trataErro($e);
     }
-
 ?>
 
 <?php require_once 'cabecalho.php' ?>
@@ -35,7 +32,7 @@ echo '<div class="row">
             <thead>
             <tr>
                 <th>Codigo</th>
-                <th>Nome</th>
+                <th>Nome do curso</th>
                 <th class="acao"> </th>
             </tr>
             </thead>
@@ -49,7 +46,7 @@ echo '<div class="row">
                         if (Cliente::getCache()->manager === 's'){    
                             echo '<td><a href="cursos-excluir-post.php?codigo=' . $codigo . '" class="btn btn-danger">Excluir</a></td>';
                         } else {
-                            echo '<td><a href="cursos-excluir-post.php?codigo=' . $codigo . '" class="btn btn-success">Cadastrar</a></td>';
+                            echo '<td><a href="cursos-incluir-post.php?codigo=' . $codigo . '" class="btn btn-success">Cadastrar</a></td>';
                         }
                     ?> 
                 </tr>

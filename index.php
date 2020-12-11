@@ -11,7 +11,7 @@
           <p>Username</p>
           <input type="text" name="username" />
           <p>Senha</p>
-          <input type="text" name="senha" placeholder="*****" />
+          <input type="password" name="senha" />
           <input type="submit" class="btn btn-success btn-block" value="Salvar">
           <a href="./index.html">Limpar campos</a><br />
           <a href="./clientes-cadastrar.php">Criar conta</a>
