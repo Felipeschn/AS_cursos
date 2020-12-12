@@ -14,10 +14,14 @@
         <h2>Lista de cursos disponíveis</h2>
     </div>
 </div>
-
 <?php 
 
 if (Cliente::getCache()->manager === 's'){
+echo '<div class="row">
+        <div class="col-md-12" style="padding-left: 75%;">
+            <span><strong>Você tem permissões de admistrador</strong></span>
+        </div>
+        </div>';
 echo '<div class="row">
          <div class="col-md-4">
              <a href="cursos-cadastrar.php" class="btn btn-info btn-block">Cadastrar Novo Curso</a>
